@@ -1,0 +1,192 @@
+package lab_3;
+import java.util.*;
+        
+public class Lab_3 {
+
+    public static void main(String[] args) {
+        
+        System.out.println("Ingresa el nombre.");
+        nombre();
+        System.out.println("Ingresa el apellido.");
+        apellido();
+        System.out.println("Ingresa el correo electrónico.");
+        correo();
+        System.out.println("Ingresa el número de teléfono fijo (7 dig).");
+        numero();
+        System.out.println("Ingresa el número de celular (10 dig).");
+        celular();
+        System.out.println("Ingresa la dirección.");
+        direccion();
+        
+    }
+    
+    public static void nombre(){
+        
+            Scanner scan = new Scanner(System.in);
+            boolean b = true;
+            
+            while(b){
+                String nombre = scan.next();
+                
+                if(nombre.length()<3)
+                    System.err.println("Insuficientes caracteres (min 3). Inténtalo de nuevo.");
+                else if(nombre.length()>10)
+                    System.err.println("Demasiados caracteres (max 10). Inténtalo de nuevo.");
+                else{   
+                    boolean o = true;
+                    for(int i=0; i<nombre.length(); i++){
+                        if(o){
+                            if(nombre.charAt(i) == '0' || nombre.charAt(i) == '1' || nombre.charAt(i) == '2' || nombre.charAt(i) == '3'
+                                    || nombre.charAt(i) == '4' || nombre.charAt(i) == '5' || nombre.charAt(i) == '6' ||
+                                    nombre.charAt(i) == '8' || nombre.charAt(i) == '9'){
+                                System.err.println("Introduciste caracteres inválidos. Inténtalo de nuevo.");
+                                o = false;
+                            }
+                        }                        
+                    }
+                        if(o){
+                            b = false;
+                            System.out.println("*Nombre -" + nombre + "- guardado con éxito.\n");       
+                        }
+                }
+            }            
+            
+    }
+    
+    public static void apellido(){
+        
+            Scanner scan = new Scanner(System.in);
+            boolean b = true;
+            
+            while(b){
+                String apellido = scan.next();
+                
+                if(apellido.length()<3)
+                    System.err.println("Insuficientes caracteres (min 3). Inténtalo de nuevo.");
+                else if(apellido.length()>10)
+                    System.err.println("Demasiados caracteres (max 10). Inténtalo de nuevo.");
+                else{   
+                    
+                    boolean o = true;
+                    for(int i=0; i<apellido.length(); i++){
+                        if(o){
+                            if(apellido.charAt(i) == '0' || apellido.charAt(i) == '1' || apellido.charAt(i) == '2' || 
+                               apellido.charAt(i) == '3' || apellido.charAt(i) == '4' || apellido.charAt(i) == '5' || 
+                               apellido.charAt(i) == '6' || apellido.charAt(i) == '8' || apellido.charAt(i) == '9'){
+                                
+                                System.err.println("Introduciste caracteres inválidos. Inténtalo de nuevo.");
+                                o = false;
+                            }
+                        }                        
+                    }
+                        if(o){
+                            b = false;
+                            System.out.println("*Apellido -" + apellido + "- guardado con éxito.\n");
+                        }
+                }
+            }            
+    }
+    
+    public static void correo(){
+        Scanner scan = new Scanner(System.in);
+        
+        boolean b = true;
+        while(b){
+            String correo = scan.next();
+            int arroa = 0;
+            boolean punto = true;
+            
+            for(int i=0; i<correo.length(); i++){
+                
+                if(correo.charAt(i) == '@'){
+                    arroa++;
+                }
+                if(punto)
+                    if(correo.charAt(i) == '.')
+                        punto = false;                    
+                
+            }
+            
+            if(arroa != 1 && punto){
+                System.err.println("El correo electrónico debe llevar un \"@\" y al menos un punto(.). Inténtalo de nuevo.");
+            }
+            else if(arroa != 1){
+                System.err.println("El correo debe llevar solo un \"@\". Inténtalo de nuevo.");
+            }
+            else{
+                System.out.println("*Correo electrónico -" + correo + "- guardado con éxito.\n");
+                b = false;
+            }
+                
+        }
+        
+    }
+    
+    public static void numero(){
+        
+        try{
+            Scanner scan = new Scanner(System.in);
+            boolean b = true;
+        
+            while(b){
+                int numero = scan.nextInt();
+            
+                if(Integer.toString(numero).length() == 7){
+                    b = false;
+                    System.out.println("*Número -" + numero +"- guardado con éxito.\n");
+                }
+                else
+                    System.err.println("Introduciste un número con " + Integer.toString(numero).length() + " dígitos." +
+                            " Inténtalo de nuevo.");
+            }            
+        }catch(InputMismatchException exc){
+            System.err.println("Introduciste caracteres inválidos. Inténtalo de nuevo.");
+            numero();
+        }
+        
+    }
+
+    public static void celular(){
+        
+        try{
+            Scanner scan = new Scanner(System.in);
+            boolean b = true;
+        
+            while(b){
+                long celular = scan.nextLong();
+            
+                if(Long.toString(celular).length() == 10){
+                    b = false;
+                    System.out.println("*Número móvil -" + celular +"- guardado con éxito.\n");
+                }
+                else
+                    System.err.println("Introduciste un número con " + Long.toString(celular).length() + " dígitos." +
+                            " Inténtalo de nuevo.");
+            }                    
+        }catch(InputMismatchException exc){
+            System.err.println("Introduciste caracteres inválidos. Inténtalo de nuevo.");
+            numero();
+        }
+        
+    }
+
+    public static void direccion(){
+        Scanner scan = new Scanner(System.in);        
+        
+        boolean b = true;
+        while(b){
+            String direccion = scan.nextLine();
+        
+            if(direccion.length()<10)
+                System.err.println("Insuficientes caracteres (min 10). Inténtalo de nuevo.");
+            else if(direccion.length()>30)
+                System.err.println("Demasiados caracteres (max 30). Inténtalo de nuevo.");
+            else{
+                System.out.println("*Direccion -" + direccion + "- guardada con éxito.\n");
+            b = false;
+            }
+        }
+        
+    }
+    
+}
